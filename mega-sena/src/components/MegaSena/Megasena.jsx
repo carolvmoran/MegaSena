@@ -22,10 +22,14 @@ export default function MegaSena(props) {
     const numerosIniciais = Array(qtd).fill(0)
     const [numeros, setNumeros] = useState(numerosIniciais);
     return (
-        <div>
-            <h2>MegaSena</h2>
-            <h3>{numeros.join(" ")}</h3>
-            <button onClick={_ => setNumeros(gerarNumeros(qtd))}>Gerar Números</button>
+        <div className="megasenaContainer">
+            <h2 className="megasenaTitle">MegaSena</h2>
+            <ul className="megasenaContainerNumeros">
+                {numeros.map((numero) => {
+                    return <li className="megasenaNumero">{numero}</li>
+                })}
+            </ul>
+            <button className="megasenaBtn" onClick={_ => setNumeros(gerarNumeros(qtd))}>Gerar Números</button>
         </div>
     );
 }
