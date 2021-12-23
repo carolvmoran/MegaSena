@@ -17,19 +17,23 @@ export default function MegaSena(props) {
         .sort((n1, n2) => n1 - n2)
         return numeros
     }
-
+    
     const qtd = props.qtd || 6
     const numerosIniciais = Array(qtd).fill(0)
     const [numeros, setNumeros] = useState(numerosIniciais);
+    const handleClick = ((event) => {
+        event.preventDefault();
+        setNumeros(gerarNumeros(qtd))
+    });
     return (
         <div className="megasenaContainer">
             <h2 className="megasenaTitle">MegaSena</h2>
             <ul className="megasenaContainerNumeros">
                 {numeros.map((numero) => {
-                    return <li className="megasenaNumero">{numero}</li>
+                    return <li className={setNumeros ? "megasenaNumeroAnimation megasenaNumero" : "megasenaNumero"}>{numero}</li>
                 })}
             </ul>
-            <button className="megasenaBtn" onClick={_ => setNumeros(gerarNumeros(qtd))}>Gerar Números</button>
+            <button className="megasenaBtn" onClick={handleClick}>Gerar Números</button>
         </div>
     );
 }
